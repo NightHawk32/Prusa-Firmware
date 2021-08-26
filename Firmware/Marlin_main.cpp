@@ -8498,7 +8498,7 @@ Sigma_Exit:
     */
 	case 910:
     {
-		tmc2130_init();
+		tmc2130_init(TMCInitParams(true, FarmOrUserECool()));
     }
     break;
 
@@ -8565,7 +8565,7 @@ Sigma_Exit:
     {
 		tmc2130_mode = TMC2130_MODE_NORMAL;
 		update_mode_profile();
-		tmc2130_init();
+		tmc2130_init(TMCInitParams(true, FarmOrUserECool()));
     }
     break;
 
@@ -8577,7 +8577,7 @@ Sigma_Exit:
     {
 		tmc2130_mode = TMC2130_MODE_SILENT;
 		update_mode_profile();
-		tmc2130_init();
+		tmc2130_init(TMCInitParams(true, FarmOrUserECool()));
     }
     break;
 
@@ -8596,6 +8596,7 @@ Sigma_Exit:
     */
 	case 916:
     {
+		#pragma message ( "Activated M916!" )
 		if (code_seen('X')) tmc2130_sg_thr[X_AXIS] = code_value();
 		if (code_seen('Y')) tmc2130_sg_thr[Y_AXIS] = code_value();
 		if (code_seen('Z')) tmc2130_sg_thr[Z_AXIS] = code_value();
