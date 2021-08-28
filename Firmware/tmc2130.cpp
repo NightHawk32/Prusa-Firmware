@@ -36,7 +36,7 @@ uint8_t tmc2130_pwm_freq[4] = {TMC2130_PWM_FREQ_X, TMC2130_PWM_FREQ_Y, TMC2130_P
 uint8_t tmc2130_mres[4] = {0, 0, 0, 0}; //will be filed at begin of init
 
 
-uint8_t tmc2130_sg_thr[4] = {TMC2130_SG_THRS_X, TMC2130_SG_THRS_Y, TMC2130_SG_THRS_Z, TMC2130_SG_THRS_E};
+int16_t tmc2130_sg_thr[4] = {TMC2130_SG_THRS_X, TMC2130_SG_THRS_Y, TMC2130_SG_THRS_Z, TMC2130_SG_THRS_E};
 uint8_t tmc2130_sg_thr_home[4] = TMC2130_SG_THRS_HOME;
 
 

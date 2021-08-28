@@ -49,6 +49,10 @@ bool eeprom_is_sheet_initialized(uint8_t sheet_num)
 
 void eeprom_init()
 {
+	if (eeprom_read_word((uint16_t*)EEPROM_TMC2130_SG_THRS_X) == 0xffff) eeprom_write_word((uint16_t*)EEPROM_TMC2130_SG_THRS_X, TMC2130_SG_THRS_X);
+	if (eeprom_read_word((uint16_t*)EEPROM_TMC2130_SG_THRS_Y) == 0xffff) eeprom_write_word((uint16_t*)EEPROM_TMC2130_SG_THRS_Y, TMC2130_SG_THRS_Y);
+	if (eeprom_read_word((uint16_t*)EEPROM_TMC2130_SG_THRS_Z) == 0xffff) eeprom_write_word((uint16_t*)EEPROM_TMC2130_SG_THRS_Z, TMC2130_SG_THRS_Z);
+	if (eeprom_read_word((uint16_t*)EEPROM_TMC2130_SG_THRS_E) == 0xffff) eeprom_write_word((uint16_t*)EEPROM_TMC2130_SG_THRS_E, TMC2130_SG_THRS_E);
     if (eeprom_read_byte((uint8_t*)EEPROM_POWER_COUNT) == 0xff) eeprom_write_byte((uint8_t*)EEPROM_POWER_COUNT, 0);
     if (eeprom_read_byte((uint8_t*)EEPROM_CRASH_COUNT_X) == 0xff) eeprom_write_byte((uint8_t*)EEPROM_CRASH_COUNT_X, 0);
     if (eeprom_read_byte((uint8_t*)EEPROM_CRASH_COUNT_Y) == 0xff) eeprom_write_byte((uint8_t*)EEPROM_CRASH_COUNT_Y, 0);
@@ -70,7 +74,7 @@ void eeprom_init()
         int last_babystep = eeprom_read_word((uint16_t *)EEPROM_BABYSTEP_Z);
         eeprom_update_word(reinterpret_cast<uint16_t *>(&(EEPROM_Sheets_base->s[0].z_offset)), last_babystep);
     }
-    
+
     for (uint_least8_t i = 0; i < (sizeof(Sheets::s)/sizeof(Sheets::s[0])); ++i)
     {
         bool is_uninitialized = true;
